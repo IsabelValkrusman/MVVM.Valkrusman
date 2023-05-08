@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace MVVM.Valkrusman.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FriendPage : ContentView
+    public partial class FriendPage : ContentPage
     {
         public FriendViewModel ViewModel { get; private set; }
         public FriendPage(FriendViewModel vm)

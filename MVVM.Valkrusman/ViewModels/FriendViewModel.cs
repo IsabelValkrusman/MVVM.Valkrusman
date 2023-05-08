@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM.Valkrusman.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -9,14 +10,11 @@ namespace MVVM.Valkrusman.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         FriendsListViewModel lvm;
-
         public Friend Friend { get; private set; }
-
         public FriendViewModel()
         {
             Friend = new Friend();
         }
-
         public FriendsListViewModel ListViewModel
         {
             get { return lvm; }
@@ -29,7 +27,6 @@ namespace MVVM.Valkrusman.ViewModels
                 }
             }
         }
-
         public string Name
         {
             get { return Friend.Name; }
@@ -42,7 +39,6 @@ namespace MVVM.Valkrusman.ViewModels
                 }
             }
         }
-
         public string Email
         {
             get { return Friend.Email; }
@@ -55,7 +51,6 @@ namespace MVVM.Valkrusman.ViewModels
                 }
             }
         }
-
         public string Phone
         {
             get { return Friend.Phone; }
@@ -66,24 +61,21 @@ namespace MVVM.Valkrusman.ViewModels
                     Friend.Phone = value;
                     OnPropertyChanged("Phone");
                 }
-
             }
         }
-
         public bool IsValid
         {
             get
             {
                 return ((!string.IsNullOrEmpty(Name.Trim())) ||
-                    (!string.IsNullOrEmpty(Phone.Trim())) ||
-                    (!string.IsNullOrEmpty(Email.Trim())));
+                (!string.IsNullOrEmpty(Phone.Trim())) ||
+                (!string.IsNullOrEmpty(Email.Trim())));
             }
         }
-
         protected void OnPropertyChanged(string propName)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
+
     }
 }

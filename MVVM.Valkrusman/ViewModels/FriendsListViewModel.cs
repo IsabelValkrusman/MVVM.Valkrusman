@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM.Valkrusman.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,15 +11,16 @@ namespace MVVM.Valkrusman.ViewModels
 {
     public class FriendsListViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<FriendViewModel> Friends { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand CreateFriendCommand { set; get; }
-        public ICommand DeleteFriendCommand { set; get; }
-        public ICommand SaveFriendCommand { set; get; }
-        public ICommand BackCommand { set; get; }
+        
+
+        public ObservableCollection<FriendViewModel> Friends { get; set; }
+        public ICommand CreateFriendCommand { protected set; get; }
+        public ICommand DeleteFriendCommand { protected set; get; }
+        public ICommand SaveFriendCommand { protected set; get; }
+        public ICommand BackCommand { protected set; get; }
         FriendViewModel selectedFriend;
         public INavigation Navigation { get; set; }
-
         public FriendsListViewModel()
         {
             Friends = new ObservableCollection<FriendViewModel>();
@@ -42,23 +44,19 @@ namespace MVVM.Valkrusman.ViewModels
                 }
             }
         }
-
         protected void OnPropertyChanged(string propName)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
-
         private void CreateFriend()
         {
             Navigation.PushAsync(new FriendPage(new FriendViewModel() { ListViewModel = this }));
         }
-
         private void Back()
         {
             Navigation.PopAsync();
         }
-
         private void SaveFriend(object friendObject)
         {
             FriendViewModel friend = friendObject as FriendViewModel;
@@ -67,8 +65,8 @@ namespace MVVM.Valkrusman.ViewModels
                 Friends.Add(friend);
             }
             Back();
-        }
 
+        }
         private void DeleteFriend(object friendObject)
         {
             FriendViewModel friend = friendObject as FriendViewModel;
@@ -76,7 +74,7 @@ namespace MVVM.Valkrusman.ViewModels
             {
                 Friends.Remove(friend);
             }
-            Back();
+            Back(); 
         }
     }
 }

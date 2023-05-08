@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace MVVM.Valkrusman.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FriendsListPage : ContentView
+    public partial class FriendsListPage : ContentPage
     {
         public FriendsListPage()
         {

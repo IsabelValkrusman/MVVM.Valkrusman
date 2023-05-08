@@ -4,10 +4,11 @@ using System.Text;
 
 namespace MVVM.Valkrusman.Models
 {
-    internal class Friend
+    public class Friend
     {
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
     }
 }
